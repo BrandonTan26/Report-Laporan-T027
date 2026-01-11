@@ -1,0 +1,1218 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laporan Per Shift - SIMPANG 3 PEJAMURAN (T027)</title>
+
+  <style>
+    /* =========================================
+      THEME & COLORS (ONYX GOLD NEON EDGE)
+    ========================================= */
+    :root{
+      --bg-main:#0b0e11;
+      --bg-card: rgba(20, 24, 31, 0.98);
+      --bg-card-soft: rgba(22, 27, 35, 0.98);
+
+      --text-main:#f5f5f4;
+      --text-muted:#a8a29e;
+
+      --gold:#d4af37;
+      --gold-2:#f5e6b0;
+
+      --neon-gold:#ffd75e;
+      --neon-ice:#7dd3fc; /* optional tip */
+
+      --border-soft: rgba(212,175,55,0.22);
+      --border-soft-2: rgba(245,230,176,0.14);
+
+      --shadow: 0 14px 34px rgba(0,0,0,0.55);
+
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "SF Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    body.light{
+      --bg-main:#faf9f7;
+      --bg-card:#ffffff;
+      --bg-card-soft:#ffffff;
+
+      --text-main:#1c1917;
+      --text-muted:#78716c;
+
+      --gold:#b8962e;
+      --gold-2:#e6d28a;
+
+      --neon-gold:#facc15;
+      --neon-ice:#60a5fa;
+
+      --border-soft:#e7e5e4;
+      --border-soft-2:#e7e5e4;
+
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    *{ box-sizing:border-box; }
+
+    /* =========================================
+      GLOBAL BACKGROUND (NO ANIM)
+    ========================================= */
+    body{
+      margin:0;
+      padding:16px;
+      font-family:var(--font-main);
+      color:var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.10), transparent 60%),
+        radial-gradient(circle at center, var(--bg-main), #050607);
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    body.light{
+      background:
+        radial-gradient(circle at top left, rgba(184,150,46,0.14), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.10), transparent 60%),
+        linear-gradient(135deg, #faf9f7, #ffffff);
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto 40px auto;
+      position:relative;
+    }
+
+    .wrap::before{
+      content:"";
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      background-image: linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:100% 3px;
+      opacity:0.10;
+      mix-blend-mode: soft-light;
+    }
+
+    /* =========================================
+      HEADER
+    ========================================= */
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .brand-block{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .logo-alfamart{
+      padding:6px 14px;
+      border-radius:12px;
+      border:1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.12), transparent 55%),
+        linear-gradient(135deg, rgba(20,24,31,0.98), rgba(11,14,17,0.98));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 0 0 1px rgba(212,175,55,0.08);
+    }
+
+    body.light .logo-alfamart{
+      background:
+        radial-gradient(circle at 20% 0%, rgba(184,150,46,0.10), transparent 55%),
+        linear-gradient(135deg, #ffffff, #faf9f7);
+      border-color: var(--border-soft);
+    }
+
+    .logo-alfamart img.logo-img{
+      height:30px;
+      display:block;
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brand-title{
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--text-main);
+      text-shadow:
+        0 0 10px rgba(0,0,0,0.55),
+        0 0 14px rgba(255,215,94,0.28);
+    }
+
+    .brand-sub{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+      color:var(--text-muted);
+    }
+
+    .toggle-theme{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid var(--border-soft);
+      background: rgba(20,24,31,0.92);
+      cursor:pointer;
+      font-size:11px;
+      color:var(--text-muted);
+      position:relative;
+      z-index:1;
+      box-shadow: 0 0 0 1px rgba(212,175,55,0.06);
+    }
+    body.light .toggle-theme{
+      background: rgba(255,255,255,0.98);
+      border-color: var(--border-soft);
+    }
+
+    .toggle-pill{
+      width:42px;
+      height:18px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--gold), var(--neon-gold));
+      position:relative;
+      border:1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 0 14px rgba(255,215,94,0.18);
+    }
+
+    .toggle-knob{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background: #0b0e11;
+      position:absolute;
+      top:1px;
+      left:2px;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    body.light .toggle-knob{
+      transform: translateX(20px);
+      background: #ffffff;
+    }
+
+    .mode-label{ white-space:nowrap; }
+
+    .divider-neon{
+      height:2px;
+      border-radius:999px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,94,0.75), rgba(125,211,252,0.50), transparent);
+      box-shadow:
+        0 0 12px rgba(255,215,94,0.22),
+        0 0 10px rgba(125,211,252,0.18);
+      margin-bottom:10px;
+      opacity:0.95;
+      position:relative;
+      z-index:1;
+    }
+    body.light .divider-neon{
+      box-shadow:
+        0 0 10px rgba(250,204,21,0.12),
+        0 0 10px rgba(96,165,250,0.10);
+      opacity:0.85;
+    }
+
+    /* =========================================
+      SECTION NAV
+    ========================================= */
+    .section-nav{
+      display:inline-flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-bottom:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .nav-chip{
+      border:none;
+      cursor:pointer;
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      background: rgba(20,24,31,0.92);
+      color:var(--text-muted);
+      border:1px solid var(--border-soft);
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    body.light .nav-chip{
+      background: rgba(255,255,255,0.98);
+      border-color: var(--border-soft);
+    }
+
+    .nav-chip:hover{
+      color:var(--text-main);
+      box-shadow: 0 0 12px rgba(255,215,94,0.18);
+      transform: translateY(-1px);
+    }
+
+    .nav-chip.active{
+      background: linear-gradient(135deg, rgba(212,175,55,0.95), rgba(255,215,94,0.92));
+      color:#0b0e11;
+      box-shadow:
+        0 0 14px rgba(255,215,94,0.22),
+        0 0 12px rgba(125,211,252,0.14);
+      border-color: rgba(255,215,94,0.22);
+    }
+
+    /* =========================================
+      CARD (NO ANIM)
+    ========================================= */
+    .card{
+      position:relative;
+      background:
+        radial-gradient(circle at top left, rgba(255,215,94,0.06), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.04), transparent 70%),
+        var(--bg-card);
+      border-radius:18px;
+      padding:14px 14px 12px 14px;
+      border:1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      margin-bottom:12px;
+      z-index:1;
+    }
+
+    body.light .card{
+      background:
+        radial-gradient(circle at top left, rgba(184,150,46,0.05), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.04), transparent 70%),
+        var(--bg-card-soft);
+    }
+
+    .card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .card-title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.20em;
+      color:var(--text-muted);
+    }
+
+    .card-title strong{
+      color: var(--neon-gold);
+      text-shadow: 0 0 10px rgba(255,215,94,0.18);
+    }
+
+    .badge-kpi{
+      font-size:10px;
+      padding:2px 9px;
+      border-radius:999px;
+      border:1px solid var(--border-soft);
+      color:var(--text-muted);
+      background: rgba(20,24,31,0.88);
+    }
+    body.light .badge-kpi{
+      background: rgba(255,255,255,0.98);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:8px 12px;
+    }
+
+    @media (max-width:720px){
+      .header{ flex-direction:column; align-items:flex-start; }
+      .grid-2{ grid-template-columns:1fr; }
+    }
+
+    label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      margin-bottom:4px;
+      display:block;
+      color:var(--text-muted);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"]{
+      width:100%;
+      padding:7px 9px;
+      border-radius:10px;
+      border:1px solid var(--border-soft);
+      background: rgba(11,14,17,0.92);
+      color:var(--text-main);
+      font-size:12px;
+      outline:none;
+      transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    body.light input[type="text"],
+    body.light input[type="number"],
+    body.light input[type="date"]{
+      background:#ffffff;
+      border-color: var(--border-soft);
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus{
+      border-color: rgba(255,215,94,0.55);
+      box-shadow:
+        0 0 10px rgba(255,215,94,0.18),
+        0 0 8px rgba(125,211,252,0.10);
+    }
+
+    input[readonly]{
+      opacity:0.78;
+      cursor:default;
+      background: rgba(22,27,35,0.92);
+    }
+    body.light input[readonly]{ background:#faf9f7; }
+
+    .note{
+      font-size:11px;
+      color:var(--text-muted);
+      margin-top:6px;
+    }
+
+    .kpi-row{
+      border-left:3px solid rgba(255,215,94,0.65);
+      padding-left:10px;
+    }
+    .kpi-row.ice{
+      border-left-color: rgba(125,211,252,0.55);
+    }
+
+    .kpi-name{
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:0.20em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+      color: var(--neon-gold);
+      text-shadow: 0 0 10px rgba(255,215,94,0.18);
+    }
+
+    /* =========================================
+      BUTTONS
+    ========================================= */
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-size:12px;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:0.10em;
+      text-transform:uppercase;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    button span.icon{ font-size:13px; }
+
+    button::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.22), transparent, transparent);
+      opacity:0;
+      transform: translateX(-100%);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    button:hover::before{ opacity:1; transform: translateX(100%); }
+
+    /* Generate (Gold Neon Edge) */
+    button.btn-red{
+      background: linear-gradient(135deg, rgba(212,175,55,0.98), rgba(255,215,94,0.92));
+      color:#0b0e11;
+      box-shadow:
+        0 0 16px rgba(255,215,94,0.22),
+        0 0 12px rgba(125,211,252,0.14);
+    }
+
+    /* Copy (Outline luxury) */
+    button.btn-yellow{
+      background: rgba(20,24,31,0.88);
+      color: var(--text-main);
+      border:1px solid rgba(255,215,94,0.28);
+      box-shadow: 0 0 14px rgba(255,215,94,0.10);
+    }
+    body.light button.btn-yellow{
+      background:#ffffff;
+      color: var(--text-main);
+    }
+
+    /* WA (deep elegant green) */
+    button.btn-wa{
+      background: linear-gradient(135deg, #0a5f3a, #064e3b);
+      color:#f5fff9;
+      box-shadow: 0 0 14px rgba(34,197,94,0.18);
+    }
+    body.light button.btn-wa{
+      background: linear-gradient(135deg, #16a34a, #0f766e);
+      box-shadow: 0 0 14px rgba(34,197,94,0.10);
+    }
+
+    button:hover{ transform: translateY(-1px); opacity:0.97; }
+    button:active{ transform: translateY(1px); box-shadow:none; opacity:0.92; }
+
+    /* =========================================
+      TEXTAREA OUTPUT
+    ========================================= */
+    textarea{
+      width:100%;
+      min-height:260px;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at top left, rgba(255,215,94,0.08), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.06), transparent 70%),
+        rgba(11,14,17,0.92);
+      color:var(--text-main);
+      font-size:12px;
+      font-family:var(--font-mono);
+      white-space: pre-wrap;
+      resize: vertical;
+      outline:none;
+    }
+    body.light textarea{
+      background:
+        radial-gradient(circle at top left, rgba(184,150,46,0.06), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.05), transparent 70%),
+        #ffffff;
+    }
+
+    .status-bar{
+      font-size:11px;
+      color:var(--text-muted);
+      margin-bottom:6px;
+    }
+    .status-bar span.label{
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-size:10px;
+    }
+
+    .pill-status{
+      display:inline-flex;
+      align-items:center;
+      padding:2px 10px;
+      font-size:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,215,94,0.22);
+      margin-left:4px;
+      box-shadow: 0 0 10px rgba(255,215,94,0.10);
+      white-space:nowrap;
+    }
+
+    .pill-status.lunas{
+      border-color: rgba(34,197,94,0.25);
+      color: #bbf7d0;
+      box-shadow: 0 0 10px rgba(34,197,94,0.10);
+    }
+
+    .pill-status.hutang{
+      border-color: rgba(153,27,27,0.25);
+      color: #fecaca;
+      box-shadow: 0 0 10px rgba(239,68,68,0.10);
+    }
+
+    /* =========================================
+      FOOTER + MOTIVASI
+    ========================================= */
+    .footer{
+      margin-top:22px;
+      padding-top:10px;
+      border-top: 1px solid rgba(255,215,94,0.18);
+      text-align:center;
+      font-size:11px;
+      color:var(--text-muted);
+      position:relative;
+      z-index:1;
+    }
+
+    .footer-main{
+      margin-bottom:3px;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      background: linear-gradient(90deg, rgba(212,175,55,0.98), rgba(255,215,94,0.92), rgba(125,211,252,0.55));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:
+        0 0 12px rgba(255,215,94,0.18),
+        0 0 10px rgba(125,211,252,0.12);
+    }
+    body.light .footer-main{
+      text-shadow:
+        0 0 10px rgba(250,204,21,0.10),
+        0 0 8px rgba(96,165,250,0.08);
+    }
+
+    .footer-sub{
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:3px;
+    }
+
+    .footer-tagline{
+      letter-spacing:0.10em;
+      text-transform:uppercase;
+      font-size:10.5px;
+      color:var(--text-muted);
+    }
+
+    .motivation-list{
+      font-size:11.5px;
+      color:var(--text-muted);
+      margin:4px 0 2px 0;
+      padding-left:18px;
+    }
+    .motivation-list li{ margin-bottom:3px; }
+
+    .motivation-title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      margin-bottom:6px;
+      color: var(--neon-gold);
+      text-shadow: 0 0 10px rgba(255,215,94,0.16);
+    }
+  </style>
+</head>
+
+<body class="dark">
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="brand-block">
+        <div class="logo-alfamart">
+          <img src="alfamart-logo.png" alt="Logo" class="logo-img" />
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">SIMPANG 3 PEJAMURAN</div>
+          <div class="brand-sub">Laporan Per Shift · Onyx Gold Neon Edge</div>
+        </div>
+      </div>
+
+      <button class="toggle-theme" id="themeToggle" type="button">
+        <div class="toggle-pill"><div class="toggle-knob"></div></div>
+        <span class="mode-label">Dark Mode</span>
+      </button>
+    </div>
+
+    <div class="divider-neon"></div>
+
+    <!-- SECTION NAV -->
+    <div class="section-nav">
+      <button type="button" class="nav-chip active" onclick="scrollToSection('section-panduan')">
+        <span class="icon">📘</span><span>Panduan</span>
+      </button>
+      <button type="button" class="nav-chip" onclick="scrollToSection('section-isi-laporan')">
+        <span class="icon">🧾</span><span>Isi Laporan</span>
+      </button>
+      <button type="button" class="nav-chip" onclick="scrollToSection('section-motivasi')">
+        <span class="icon">⭐</span><span>Motivasi</span>
+      </button>
+    </div>
+
+    <!-- PANDUAN -->
+    <div class="card" id="section-panduan">
+      <div class="card-header">
+        <div class="card-title"><strong>Panduan</strong> · Cara Pakai Template Ini</div>
+        <span class="badge-kpi">Guide</span>
+      </div>
+
+      <div>
+        <p style="font-size:12px; margin:0 0 6px 0; font-weight:600;">Versi sopan &amp; jelas untuk kasir</p>
+        <ol style="margin:0 0 8px 16px; padding:0; font-size:12px; color:var(--text-main);">
+          <li>Isi <strong>Tanggal, Pejabat, Nama Kasir, AC, dan Shift</strong>.</li>
+          <li>Isi <strong>ACTUAL &amp; Hutang Kemarin</strong> pada setiap KPI sesuai pencapaian shift Anda.</li>
+          <li>Klik <strong>Generate Laporan</strong>.</li>
+          <li>Periksa hasil laporan di kotak bawah.</li>
+          <li>Klik <strong>Copy Laporan</strong>.</li>
+          <li>Klik <strong>Kirim ke Grup WA</strong>, lalu <strong>paste</strong> laporan di grup.</li>
+          <li>Jika ada kesalahan angka, ubah input → klik <strong>Generate</strong> kembali.</li>
+        </ol>
+
+        <p class="note">
+          <strong>Total Target, GAP, dan ACV%</strong> otomatis terisi.
+          Target KPI <strong>fix</strong>.
+          Kasir cukup isi data umum, <strong>Hutang Kemarin</strong>, dan <strong>ACTUAL</strong> untuk shift yang sedang dijalankan.
+        </p>
+      </div>
+    </div>
+
+    <!-- DATA UMUM -->
+    <div class="card" id="section-isi-laporan">
+      <div class="card-header">
+        <div class="card-title"><strong>Input Laporan</strong> · Data Umum Shift</div>
+        <span class="badge-kpi">T027 · SIMPANG 3 PEJAMURAN</span>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Nama Toko</label>
+          <input type="text" id="namaToko" value="SIMPANG 3 PEJAMURAN" />
+        </div>
+        <div>
+          <label>Tanggal</label>
+          <input type="date" id="tanggal" />
+        </div>
+        <div>
+          <label>Pejabat</label>
+          <input type="text" id="pejabat" placeholder="Isi nama pejabat" />
+        </div>
+        <div>
+          <label>Nama Kasir</label>
+          <input type="text" id="namaKasir" placeholder="Isi nama kasir" />
+        </div>
+        <div>
+          <label>AC</label>
+          <input type="text" id="ac" placeholder="Isi nama AC" />
+        </div>
+        <div>
+          <label>Shift</label>
+          <input type="number" id="shift" min="1" max="2" placeholder="1 / 2" />
+        </div>
+      </div>
+
+      <p class="note">
+        Target KPI di bawah <strong>fix</strong>. Kasir cukup isi data umum, <strong>Hutang Kemarin</strong>, dan <strong>ACTUAL</strong>.
+        Total Target, GAP, dan ACV% dihitung otomatis per shift.
+      </p>
+    </div>
+
+    <!-- PSM -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>PSM</strong></div>
+        <span class="badge-kpi">Up-Selling</span>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-name">PSM</div>
+        <div class="grid-2">
+          <div><label>Target Shift 1</label><input type="number" id="psmTarget1" value="30" readonly /></div>
+          <div><label>Target Shift 2</label><input type="number" id="psmTarget2" value="30" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="psmHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="psmActual" placeholder="Isi PSM shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PWP -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>PWP</strong></div>
+        <span class="badge-kpi">Bundling</span>
+      </div>
+
+      <div class="kpi-row ice">
+        <div class="kpi-name">PWP</div>
+        <div class="grid-2">
+          <div><label>Target Shift 1</label><input type="number" id="pwpTarget1" value="25" readonly /></div>
+          <div><label>Target Shift 2</label><input type="number" id="pwpTarget2" value="25" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="pwpHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="pwpActual" placeholder="Isi PWP shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SG (SERBA GRATIS) -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>SG</strong></div>
+        <span class="badge-kpi">Serba Gratis</span>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-name">SERBA GRATIS</div>
+        <div class="grid-2">
+          <div><label>Target Shift 1</label><input type="number" id="sgTarget1" value="10" readonly /></div>
+          <div><label>Target Shift 2</label><input type="number" id="sgTarget2" value="10" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="sgHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="sgActual" placeholder="Isi SG shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEGEER -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>SEGEER</strong></div>
+        <span class="badge-kpi">Promo / Redeem</span>
+      </div>
+
+      <div class="kpi-row ice">
+        <div class="kpi-name">SEGEER</div>
+        <div class="grid-2">
+          <div><label>Target Shift 1</label><input type="number" id="segeerTarget1" value="20" readonly /></div>
+          <div><label>Target Shift 2</label><input type="number" id="segeerTarget2" value="20" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="segeerHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="segeerActual" placeholder="Isi Segeer shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMO SUEGEER (TARGET 20%) -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>Promo Suegeer</strong></div>
+        <span class="badge-kpi">Redeem</span>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-name">PROMO SUEGEER</div>
+        <div class="grid-2">
+          <div><label>Target % ke syarat</label><input type="number" id="suegeerTargetPct" value="20" readonly /></div>
+          <div><label>Struk Bersyarat</label><input type="number" id="suegeerBersyarat" placeholder="Struk memenuhi syarat (shift ini / total)" /></div>
+          <div><label>Struk Redeem</label><input type="number" id="suegeerRedeem" placeholder="Struk redeem" /></div>
+        </div>
+        <p class="note">ACV% Suegeer = (Redeem ÷ Bersyarat) × 100. (Tanpa hutang kemarin)</p>
+      </div>
+    </div>
+
+    <!-- NEW MEMBER -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>New Member</strong></div>
+        <span class="badge-kpi">Akuisisi</span>
+      </div>
+
+      <div class="kpi-row ice">
+        <div class="kpi-name">NEW MEMBER</div>
+        <div class="grid-2">
+          <div><label>Target Shift 1</label><input type="number" id="nmTarget1" value="1" readonly /></div>
+          <div><label>Target Shift 2</label><input type="number" id="nmTarget2" value="1" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="nmHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="nmActual" placeholder="Isi NM shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TELUR -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">KPI · <strong>Telur Ayam Negeri</strong></div>
+        <span class="badge-kpi">SKU Fokus</span>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-name">TELUR AYAM NEGERI</div>
+        <div class="grid-2">
+          <div><label>Target pack / shift</label><input type="number" id="telurTargetShift" value="1" readonly /></div>
+          <div><label>Hutang Kemarin</label><input type="number" id="telurHutangPrev" value="0" /></div>
+          <div><label>ACTUAL (shift yang jaga, pack)</label><input type="number" id="telurActual" placeholder="Total pack telur shift ini" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><strong>Output</strong> · Laporan Siap Kirim WA</div>
+        <span class="badge-kpi">Shift Report</span>
+      </div>
+
+      <div class="status-bar" id="statusSummary">
+        <span class="label">Status KPI</span> · <span>Belum digenerate</span>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn-red" onclick="generateLaporan()"><span class="icon">⚡</span><span>Generate Laporan</span></button>
+        <button type="button" class="btn-yellow" onclick="copyLaporan()"><span class="icon">📋</span><span>Copy Laporan</span></button>
+        <button type="button" class="btn-wa" onclick="openWhatsAppGroup()"><span class="icon">🟢</span><span>Kirim ke Grup WA</span></button>
+      </div>
+
+      <textarea id="output" placeholder="Klik 'Generate Laporan' dulu, lalu copy dan paste di grup WA..."></textarea>
+      <p class="note">Flow: isi data → klik <strong>Generate</strong> → <strong>Copy</strong> → <strong>Kirim ke Grup WA</strong> → paste di chat.</p>
+    </div>
+
+    <!-- MOTIVASI -->
+    <div class="card" id="section-motivasi">
+      <div class="card-header">
+        <div class="card-title"><strong>Motivasi</strong> · Versi Pendek &amp; Ngena</div>
+        <span class="badge-kpi">Untuk Kasir</span>
+      </div>
+
+      <div>
+        <p class="motivation-title">Motivasi Shift</p>
+        <ul class="motivation-list">
+          <li>“Kerja rapi itu mahal nilainya.”</li>
+          <li>“Target bukan tekanan, tapi arah.”</li>
+          <li>“Data rapi, keputusan pasti.”</li>
+          <li>“Satu shift, satu tanggung jawab.”</li>
+          <li>“Konsistensi kecil menangin hasil besar.”</li>
+          <li>“Senyum Anda adalah branding toko.”</li>
+          <li>“Cepat itu bagus, tepat itu wajib.”</li>
+          <li>“Capek itu wajar, standar tetap jalan.”</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-main">© 2026 • SIMPANG 3 PEJAMURAN ❤️</div>
+      <div class="footer-sub">Built by D&amp;D A Digital Creative Studio</div>
+      <div class="footer-tagline">Data rapi • Target tercapai</div>
+    </div>
+
+  </div>
+
+  <script>
+    // THEME TOGGLE
+    (function initTheme() {
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      const label = toggle.querySelector(".mode-label");
+
+      function applyTheme(mode) {
+        if (mode === "light") {
+          body.classList.remove("dark");
+          body.classList.add("light");
+          label.textContent = "Light Mode";
+        } else {
+          body.classList.remove("light");
+          body.classList.add("dark");
+          label.textContent = "Dark Mode";
+        }
+      }
+
+      const saved = localStorage.getItem("reportTheme");
+      if (saved === "light" || saved === "dark") applyTheme(saved);
+      else applyTheme("dark");
+
+      toggle.addEventListener("click", () => {
+        const cur = body.classList.contains("light") ? "light" : "dark";
+        const next = cur === "light" ? "dark" : "light";
+        applyTheme(next);
+        localStorage.setItem("reportTheme", next);
+      });
+    })();
+
+    // SECTION NAV SCROLL
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      const chips = document.querySelectorAll(".nav-chip");
+      chips.forEach(ch => ch.classList.remove("active"));
+
+      if (id === "section-panduan") chips[0]?.classList.add("active");
+      else if (id === "section-isi-laporan") chips[1]?.classList.add("active");
+      else if (id === "section-motivasi") chips[2]?.classList.add("active");
+    }
+
+    function formatTanggalId(value) {
+      if (!value) return "";
+      const parts = value.split("-");
+      if (parts.length !== 3) return value;
+      return parts[2] + "-" + parts[1] + "-" + parts[0]; // dd-mm-yyyy
+    }
+
+    // HITUNG KPI DENGAN HUTANG KEMARIN
+    function hitungKpiWithDebt(target1, target2, hutangPrev, actual, shift) {
+      const t1 = Number(target1) || 0;
+      const t2 = Number(target2) || 0;
+      const hut = Number(hutangPrev) || 0;
+      const act = Number(actual) || 0;
+      const sh = Number(shift) || 0;
+
+      let baseTarget = 0;
+      if (sh === 1) baseTarget = t1;
+      else if (sh === 2) baseTarget = t2;
+      else baseTarget = t1 + t2;
+
+      const totalTarget = baseTarget + hut;
+
+      let acv = 0;
+      if (totalTarget > 0) acv = (act / totalTarget) * 100;
+      const acvRounded = Math.round(acv);
+
+      const gap = act - totalTarget;
+      let statusGap = "Tercapai";
+      if (gap > 0) statusGap = "Lebih";
+      else if (gap < 0) statusGap = "Kurang";
+
+      return {
+        baseTarget,
+        hutangPrev: hut,
+        totalTarget,
+        act,
+        acvRounded,
+        gap,
+        statusGap
+      };
+    }
+
+    // TELUR: TARGET PER SHIFT + HUTANG KEMARIN
+    function hitungTelurWithDebt(targetShift, hutangPrev, actual) {
+      const baseTarget = Number(targetShift) || 0;
+      const hut = Number(hutangPrev) || 0;
+      const act = Number(actual) || 0;
+
+      const totalTarget = baseTarget + hut;
+
+      let acv = 0;
+      if (totalTarget > 0) acv = (act / totalTarget) * 100;
+      const acvRounded = Math.round(acv);
+
+      const gap = act - totalTarget;
+      let statusGap = "Tercapai";
+      if (gap > 0) statusGap = "Lebih";
+      else if (gap < 0) statusGap = "Kurang";
+
+      return {
+        baseTarget,
+        hutangPrev: hut,
+        totalTarget,
+        act,
+        acvRounded,
+        gap,
+        statusGap
+      };
+    }
+
+    function formatGapLine(k) {
+      const num = k.gap > 0 ? "+" + k.gap : String(k.gap);
+      return `GAP : ${num} (${k.statusGap})`;
+    }
+
+    function formatGapShort(k) {
+      const num = k.gap > 0 ? "+" + k.gap : String(k.gap);
+      return `${num} ${k.statusGap}`;
+    }
+
+    function generateLaporan() {
+      const namaToko = document.getElementById("namaToko").value || "";
+      const tanggalRaw = document.getElementById("tanggal").value || "";
+      const tanggal = formatTanggalId(tanggalRaw);
+
+      const pejabat = document.getElementById("pejabat").value || "";
+      const namaKasir = document.getElementById("namaKasir").value || "";
+      const ac = document.getElementById("ac").value || "";
+
+      const shift = document.getElementById("shift").value || "";
+      const shNum = Number(shift) || 0;
+
+      // PSM
+      const psm = hitungKpiWithDebt(
+        document.getElementById("psmTarget1").value,
+        document.getElementById("psmTarget2").value,
+        document.getElementById("psmHutangPrev").value,
+        document.getElementById("psmActual").value,
+        shNum
+      );
+
+      // PWP
+      const pwp = hitungKpiWithDebt(
+        document.getElementById("pwpTarget1").value,
+        document.getElementById("pwpTarget2").value,
+        document.getElementById("pwpHutangPrev").value,
+        document.getElementById("pwpActual").value,
+        shNum
+      );
+
+      // SG
+      const sg = hitungKpiWithDebt(
+        document.getElementById("sgTarget1").value,
+        document.getElementById("sgTarget2").value,
+        document.getElementById("sgHutangPrev").value,
+        document.getElementById("sgActual").value,
+        shNum
+      );
+
+      // SEGEER
+      const segeer = hitungKpiWithDebt(
+        document.getElementById("segeerTarget1").value,
+        document.getElementById("segeerTarget2").value,
+        document.getElementById("segeerHutangPrev").value,
+        document.getElementById("segeerActual").value,
+        shNum
+      );
+
+      // NEW MEMBER
+      const nm = hitungKpiWithDebt(
+        document.getElementById("nmTarget1").value,
+        document.getElementById("nmTarget2").value,
+        document.getElementById("nmHutangPrev").value,
+        document.getElementById("nmActual").value,
+        shNum
+      );
+
+      // TELUR
+      const telur = hitungTelurWithDebt(
+        document.getElementById("telurTargetShift").value,
+        document.getElementById("telurHutangPrev").value,
+        document.getElementById("telurActual").value
+      );
+
+      // PROMO SUEGEER (PERCENT)
+      const suegeerTargetPct = Number(document.getElementById("suegeerTargetPct").value) || 0;
+      const suegeerBersyarat = Number(document.getElementById("suegeerBersyarat").value) || 0;
+      const suegeerRedeem = Number(document.getElementById("suegeerRedeem").value) || 0;
+
+      let suegeerAcv = 0;
+      if (suegeerBersyarat > 0) suegeerAcv = (suegeerRedeem / suegeerBersyarat) * 100;
+      const suegeerAcvRounded = Math.round(suegeerAcv);
+
+      const laporan =
+`LAPORAN PERSHIFT
+NAMA TOKO   : ${namaToko}
+KODE TOKO   : T027
+TANGGAL     : ${tanggal}
+PEJABAT     : ${pejabat}
+NAMA KASIR  : ${namaKasir}
+AC          : ${ac}
+SHIFT       : ${shift}
+
+*PSM*
+TARGET SHIFT   : ${psm.baseTarget}
+HUTANG KEMARIN : ${psm.hutangPrev}
+TOTAL TARGET   : ${psm.totalTarget}
+ACTUAL         : ${psm.act}
+${formatGapLine(psm)}
+ACV%           : ${psm.acvRounded}%
+
+*PWP*
+TARGET SHIFT   : ${pwp.baseTarget}
+HUTANG KEMARIN : ${pwp.hutangPrev}
+TOTAL TARGET   : ${pwp.totalTarget}
+ACTUAL         : ${pwp.act}
+${formatGapLine(pwp)}
+ACV%           : ${pwp.acvRounded}%
+
+*SG (SERBA GRATIS)*
+TARGET SHIFT   : ${sg.baseTarget}
+HUTANG KEMARIN : ${sg.hutangPrev}
+TOTAL TARGET   : ${sg.totalTarget}
+ACTUAL         : ${sg.act}
+${formatGapLine(sg)}
+ACV%           : ${sg.acvRounded}%
+
+*SEGEER*
+TARGET SHIFT   : ${segeer.baseTarget}
+HUTANG KEMARIN : ${segeer.hutangPrev}
+TOTAL TARGET   : ${segeer.totalTarget}
+ACTUAL         : ${segeer.act}
+${formatGapLine(segeer)}
+ACV%           : ${segeer.acvRounded}%
+
+*PROMO SUEGEER*
+TARGET ${suegeerTargetPct}% TO SYARAT
+STRUK BERSYARAT : ${suegeerBersyarat}
+STRUK REDEEM    : ${suegeerRedeem}
+ACV%            : ${suegeerAcvRounded}%
+
+*NEW MEMBER*
+TARGET SHIFT   : ${nm.baseTarget}
+HUTANG KEMARIN : ${nm.hutangPrev}
+TOTAL TARGET   : ${nm.totalTarget}
+ACTUAL         : ${nm.act}
+${formatGapLine(nm)}
+ACV%           : ${nm.acvRounded}%
+
+*TELUR AYAM NEGERI*
+TARGET SHIFT   : ${telur.baseTarget} PACK
+HUTANG KEMARIN : ${telur.hutangPrev}
+TOTAL TARGET   : ${telur.totalTarget}
+ACTUAL         : ${telur.act}
+${formatGapLine(telur)}
+ACV%           : ${telur.acvRounded}%`;
+
+      document.getElementById("output").value = laporan;
+
+      // STATUS BAR
+      const statusSummary = document.getElementById("statusSummary");
+      const statusPieces = [];
+
+      function pill(text, ok) {
+        const cls = ok ? "pill-status lunas" : "pill-status hutang";
+        return `<span class="${cls}">${text}</span>`;
+      }
+
+      statusPieces.push('<span class="label">Status KPI</span> · ');
+      statusPieces.push("PSM ");
+      statusPieces.push(pill(formatGapShort(psm), psm.gap >= 0));
+      statusPieces.push(" · PWP ");
+      statusPieces.push(pill(formatGapShort(pwp), pwp.gap >= 0));
+      statusPieces.push(" · SG ");
+      statusPieces.push(pill(formatGapShort(sg), sg.gap >= 0));
+      statusPieces.push(" · SEGEER ");
+      statusPieces.push(pill(formatGapShort(segeer), segeer.gap >= 0));
+      statusPieces.push(" · NM ");
+      statusPieces.push(pill(formatGapShort(nm), nm.gap >= 0));
+      statusPieces.push(" · TELUR ");
+      statusPieces.push(pill(formatGapShort(telur), telur.gap >= 0));
+
+      statusSummary.innerHTML = statusPieces.join("");
+    }
+
+    async function copyLaporan() {
+      const textarea = document.getElementById("output");
+      const text = textarea.value || "";
+      if (!text.trim()) {
+        alert("Belum ada laporan. Klik GENERATE dulu.");
+        return;
+      }
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          textarea.select();
+          textarea.setSelectionRange(0, 99999);
+          document.execCommand("copy");
+        }
+        alert("Laporan sudah di-copy. Tinggal paste di WA.");
+      } catch (e) {
+        console.error(e);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert("Clipboard tidak mendukung penuh. Laporan sudah diseleksi, silakan copy manual.");
+      }
+    }
+
+    function openWhatsAppGroup() {
+      const url = "https://chat.whatsapp.com/EtHPNkzNKfLJnIRzvq92cq";
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
