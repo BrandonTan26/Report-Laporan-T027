@@ -7,7 +7,7 @@
 
   <style>
     /* =========================================
-      THEME & COLORS (ONYX GOLD NEON EDGE)
+      THEME & COLORS (ONYX GOLD NEON EDGE - BRIGHTER NEON)
     ========================================= */
     :root{
       --bg-main:#0b0e11;
@@ -21,10 +21,10 @@
       --gold-2:#f5e6b0;
 
       --neon-gold:#ffd75e;
-      --neon-ice:#7dd3fc; /* optional tip */
+      --neon-ice:#7dd3fc;
 
-      --border-soft: rgba(212,175,55,0.22);
-      --border-soft-2: rgba(245,230,176,0.14);
+      --border-soft: rgba(212,175,55,0.24);
+      --border-soft-2: rgba(245,230,176,0.16);
 
       --shadow: 0 14px 34px rgba(0,0,0,0.55);
 
@@ -63,16 +63,16 @@
       font-family:var(--font-main);
       color:var(--text-main);
       background:
-        radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(125,211,252,0.10), transparent 60%),
+        radial-gradient(circle at top left, rgba(255,215,94,0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.14), transparent 60%),
         radial-gradient(circle at center, var(--bg-main), #050607);
       transition: background 0.25s ease, color 0.25s ease;
     }
 
     body.light{
       background:
-        radial-gradient(circle at top left, rgba(184,150,46,0.14), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(96,165,250,0.10), transparent 60%),
+        radial-gradient(circle at top left, rgba(250,204,21,0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.14), transparent 60%),
         linear-gradient(135deg, #faf9f7, #ffffff);
     }
 
@@ -122,7 +122,9 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.08);
+      box-shadow:
+        0 0 0 1px rgba(255,215,94,0.10),
+        0 0 18px rgba(255,215,94,0.10);
     }
 
     body.light .logo-alfamart{
@@ -130,6 +132,9 @@
         radial-gradient(circle at 20% 0%, rgba(184,150,46,0.10), transparent 55%),
         linear-gradient(135deg, #ffffff, #faf9f7);
       border-color: var(--border-soft);
+      box-shadow:
+        0 0 0 1px rgba(250,204,21,0.10),
+        0 0 14px rgba(96,165,250,0.10);
     }
 
     .logo-alfamart img.logo-img{
@@ -151,7 +156,7 @@
       color:var(--text-main);
       text-shadow:
         0 0 10px rgba(0,0,0,0.55),
-        0 0 14px rgba(255,215,94,0.28);
+        0 0 18px rgba(255,215,94,0.30);
     }
 
     .brand-sub{
@@ -164,31 +169,38 @@
     .toggle-theme{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:7px 11px;
+      gap:10px;
+      padding:7px 12px;
       border-radius:999px;
-      border:1px solid var(--border-soft);
-      background: rgba(20,24,31,0.92);
+      border:1px solid rgba(255,215,94,0.28);
+      background: rgba(20,24,31,0.90);
       cursor:pointer;
       font-size:11px;
       color:var(--text-muted);
       position:relative;
       z-index:1;
-      box-shadow: 0 0 0 1px rgba(212,175,55,0.06);
+      box-shadow:
+        0 0 0 1px rgba(255,215,94,0.10),
+        0 0 18px rgba(255,215,94,0.14);
     }
     body.light .toggle-theme{
       background: rgba(255,255,255,0.98);
-      border-color: var(--border-soft);
+      border-color: rgba(250,204,21,0.22);
+      box-shadow:
+        0 0 0 1px rgba(250,204,21,0.10),
+        0 0 16px rgba(96,165,250,0.12);
     }
 
     .toggle-pill{
-      width:42px;
+      width:46px;
       height:18px;
       border-radius:999px;
       background: linear-gradient(135deg, var(--gold), var(--neon-gold));
       position:relative;
       border:1px solid rgba(255,255,255,0.22);
-      box-shadow: 0 0 14px rgba(255,215,94,0.18);
+      box-shadow:
+        0 0 18px rgba(255,215,94,0.32),
+        0 0 14px rgba(125,211,252,0.22);
     }
 
     .toggle-knob{
@@ -200,31 +212,42 @@
       top:1px;
       left:2px;
       transition: transform 0.25s ease, background 0.25s ease;
+      box-shadow: 0 0 12px rgba(255,215,94,0.20);
     }
     body.light .toggle-knob{
-      transform: translateX(20px);
+      transform: translateX(22px);
       background: #ffffff;
+      box-shadow: 0 0 12px rgba(96,165,250,0.18);
     }
 
-    .mode-label{ white-space:nowrap; }
+    .mode-label{
+      white-space:nowrap;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-size:10px;
+      color:var(--text-main);
+      text-shadow: 0 0 10px rgba(255,215,94,0.16);
+    }
+    body.light .mode-label{
+      text-shadow: 0 0 10px rgba(96,165,250,0.12);
+    }
 
     .divider-neon{
       height:2px;
       border-radius:999px;
-      background: linear-gradient(90deg, transparent, rgba(255,215,94,0.75), rgba(125,211,252,0.50), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,215,94,0.95), rgba(125,211,252,0.80), transparent);
       box-shadow:
-        0 0 12px rgba(255,215,94,0.22),
-        0 0 10px rgba(125,211,252,0.18);
+        0 0 18px rgba(255,215,94,0.38),
+        0 0 16px rgba(125,211,252,0.28);
       margin-bottom:10px;
-      opacity:0.95;
+      opacity:1;
       position:relative;
       z-index:1;
     }
     body.light .divider-neon{
       box-shadow:
-        0 0 10px rgba(250,204,21,0.12),
-        0 0 10px rgba(96,165,250,0.10);
-      opacity:0.85;
+        0 0 16px rgba(250,204,21,0.24),
+        0 0 14px rgba(96,165,250,0.20);
     }
 
     /* =========================================
@@ -263,27 +286,29 @@
 
     .nav-chip:hover{
       color:var(--text-main);
-      box-shadow: 0 0 12px rgba(255,215,94,0.18);
+      box-shadow:
+        0 0 16px rgba(255,215,94,0.24),
+        0 0 12px rgba(125,211,252,0.16);
       transform: translateY(-1px);
     }
 
     .nav-chip.active{
-      background: linear-gradient(135deg, rgba(212,175,55,0.95), rgba(255,215,94,0.92));
+      background: linear-gradient(135deg, rgba(212,175,55,0.98), rgba(255,215,94,0.96));
       color:#0b0e11;
       box-shadow:
-        0 0 14px rgba(255,215,94,0.22),
-        0 0 12px rgba(125,211,252,0.14);
-      border-color: rgba(255,215,94,0.22);
+        0 0 18px rgba(255,215,94,0.36),
+        0 0 14px rgba(125,211,252,0.24);
+      border-color: rgba(255,215,94,0.30);
     }
 
     /* =========================================
-      CARD (NO ANIM)
+      CARD
     ========================================= */
     .card{
       position:relative;
       background:
-        radial-gradient(circle at top left, rgba(255,215,94,0.06), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(125,211,252,0.04), transparent 70%),
+        radial-gradient(circle at top left, rgba(255,215,94,0.08), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.06), transparent 70%),
         var(--bg-card);
       border-radius:18px;
       padding:14px 14px 12px 14px;
@@ -295,8 +320,8 @@
 
     body.light .card{
       background:
-        radial-gradient(circle at top left, rgba(184,150,46,0.05), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(96,165,250,0.04), transparent 70%),
+        radial-gradient(circle at top left, rgba(184,150,46,0.06), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.05), transparent 70%),
         var(--bg-card-soft);
     }
 
@@ -317,7 +342,7 @@
 
     .card-title strong{
       color: var(--neon-gold);
-      text-shadow: 0 0 10px rgba(255,215,94,0.18);
+      text-shadow: 0 0 14px rgba(255,215,94,0.26);
     }
 
     .badge-kpi{
@@ -376,10 +401,10 @@
     input[type="text"]:focus,
     input[type="number"]:focus,
     input[type="date"]:focus{
-      border-color: rgba(255,215,94,0.55);
+      border-color: rgba(255,215,94,0.70);
       box-shadow:
-        0 0 10px rgba(255,215,94,0.18),
-        0 0 8px rgba(125,211,252,0.10);
+        0 0 16px rgba(255,215,94,0.26),
+        0 0 14px rgba(125,211,252,0.18);
     }
 
     input[readonly]{
@@ -396,11 +421,11 @@
     }
 
     .kpi-row{
-      border-left:3px solid rgba(255,215,94,0.65);
+      border-left:3px solid rgba(255,215,94,0.75);
       padding-left:10px;
     }
     .kpi-row.ice{
-      border-left-color: rgba(125,211,252,0.55);
+      border-left-color: rgba(125,211,252,0.70);
     }
 
     .kpi-name{
@@ -410,7 +435,7 @@
       text-transform:uppercase;
       margin-bottom:6px;
       color: var(--neon-gold);
-      text-shadow: 0 0 10px rgba(255,215,94,0.18);
+      text-shadow: 0 0 14px rgba(255,215,94,0.26);
     }
 
     /* =========================================
@@ -429,7 +454,7 @@
       font-size:12px;
       padding:8px 14px;
       border-radius:999px;
-      font-weight:700;
+      font-weight:800;
       letter-spacing:0.10em;
       text-transform:uppercase;
       display:inline-flex;
@@ -439,52 +464,54 @@
       position:relative;
       overflow:hidden;
     }
+
     button span.icon{ font-size:13px; }
 
     button::before{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(120deg, rgba(255,255,255,0.22), transparent, transparent);
+      background: linear-gradient(120deg, rgba(255,255,255,0.28), transparent, transparent);
       opacity:0;
       transform: translateX(-100%);
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
     button:hover::before{ opacity:1; transform: translateX(100%); }
 
-    /* Generate (Gold Neon Edge) */
     button.btn-red{
-      background: linear-gradient(135deg, rgba(212,175,55,0.98), rgba(255,215,94,0.92));
+      background: linear-gradient(135deg, rgba(212,175,55,0.98), rgba(255,215,94,0.96));
       color:#0b0e11;
       box-shadow:
-        0 0 16px rgba(255,215,94,0.22),
-        0 0 12px rgba(125,211,252,0.14);
+        0 0 20px rgba(255,215,94,0.40),
+        0 0 16px rgba(125,211,252,0.26);
     }
 
-    /* Copy (Outline luxury) */
     button.btn-yellow{
       background: rgba(20,24,31,0.88);
       color: var(--text-main);
-      border:1px solid rgba(255,215,94,0.28);
-      box-shadow: 0 0 14px rgba(255,215,94,0.10);
+      border:1px solid rgba(255,215,94,0.34);
+      box-shadow:
+        0 0 18px rgba(255,215,94,0.18),
+        0 0 12px rgba(125,211,252,0.10);
     }
     body.light button.btn-yellow{
       background:#ffffff;
       color: var(--text-main);
     }
 
-    /* WA (deep elegant green) */
     button.btn-wa{
       background: linear-gradient(135deg, #0a5f3a, #064e3b);
       color:#f5fff9;
-      box-shadow: 0 0 14px rgba(34,197,94,0.18);
+      box-shadow:
+        0 0 18px rgba(34,197,94,0.22),
+        0 0 12px rgba(255,215,94,0.10);
     }
     body.light button.btn-wa{
       background: linear-gradient(135deg, #16a34a, #0f766e);
-      box-shadow: 0 0 14px rgba(34,197,94,0.10);
+      box-shadow: 0 0 14px rgba(34,197,94,0.14);
     }
 
-    button:hover{ transform: translateY(-1px); opacity:0.97; }
+    button:hover{ transform: translateY(-1px); opacity:0.98; }
     button:active{ transform: translateY(1px); box-shadow:none; opacity:0.92; }
 
     /* =========================================
@@ -497,8 +524,8 @@
       border-radius:12px;
       border:1px solid var(--border-soft);
       background:
-        radial-gradient(circle at top left, rgba(255,215,94,0.08), transparent 70%),
-        radial-gradient(circle at bottom right, rgba(125,211,252,0.06), transparent 70%),
+        radial-gradient(circle at top left, rgba(255,215,94,0.10), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(125,211,252,0.08), transparent 70%),
         rgba(11,14,17,0.92);
       color:var(--text-main);
       font-size:12px;
@@ -509,8 +536,8 @@
     }
     body.light textarea{
       background:
-        radial-gradient(circle at top left, rgba(184,150,46,0.06), transparent 70%),
-        radial-gradient(circle at bottom right, rgba(96,165,250,0.05), transparent 70%),
+        radial-gradient(circle at top left, rgba(184,150,46,0.07), transparent 70%),
+        radial-gradient(circle at bottom right, rgba(96,165,250,0.06), transparent 70%),
         #ffffff;
     }
 
@@ -531,31 +558,33 @@
       padding:2px 10px;
       font-size:10px;
       border-radius:999px;
-      border:1px solid rgba(255,215,94,0.22);
+      border:1px solid rgba(255,215,94,0.28);
       margin-left:4px;
-      box-shadow: 0 0 10px rgba(255,215,94,0.10);
+      box-shadow:
+        0 0 14px rgba(255,215,94,0.18),
+        0 0 10px rgba(125,211,252,0.12);
       white-space:nowrap;
     }
 
     .pill-status.lunas{
-      border-color: rgba(34,197,94,0.25);
+      border-color: rgba(34,197,94,0.28);
       color: #bbf7d0;
-      box-shadow: 0 0 10px rgba(34,197,94,0.10);
+      box-shadow: 0 0 12px rgba(34,197,94,0.14);
     }
 
     .pill-status.hutang{
-      border-color: rgba(153,27,27,0.25);
+      border-color: rgba(153,27,27,0.28);
       color: #fecaca;
-      box-shadow: 0 0 10px rgba(239,68,68,0.10);
+      box-shadow: 0 0 12px rgba(239,68,68,0.14);
     }
 
     /* =========================================
-      FOOTER + MOTIVASI
+      FOOTER
     ========================================= */
     .footer{
       margin-top:22px;
       padding-top:10px;
-      border-top: 1px solid rgba(255,215,94,0.18);
+      border-top: 1px solid rgba(255,215,94,0.22);
       text-align:center;
       font-size:11px;
       color:var(--text-muted);
@@ -567,33 +596,23 @@
       margin-bottom:3px;
       letter-spacing:0.16em;
       text-transform:uppercase;
-      background: linear-gradient(90deg, rgba(212,175,55,0.98), rgba(255,215,94,0.92), rgba(125,211,252,0.55));
+      background: linear-gradient(90deg, rgba(212,175,55,0.98), rgba(255,215,94,0.96), rgba(125,211,252,0.75));
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
       text-shadow:
-        0 0 12px rgba(255,215,94,0.18),
-        0 0 10px rgba(125,211,252,0.12);
-    }
-    body.light .footer-main{
-      text-shadow:
-        0 0 10px rgba(250,204,21,0.10),
-        0 0 8px rgba(96,165,250,0.08);
+        0 0 16px rgba(255,215,94,0.26),
+        0 0 12px rgba(125,211,252,0.16);
     }
 
     .footer-sub{
       letter-spacing:0.08em;
       text-transform:uppercase;
-      margin-bottom:3px;
     }
 
-    .footer-tagline{
-      letter-spacing:0.10em;
-      text-transform:uppercase;
-      font-size:10.5px;
-      color:var(--text-muted);
-    }
-
+    /* =========================================
+      MOTIVASI
+    ========================================= */
     .motivation-list{
       font-size:11.5px;
       color:var(--text-muted);
@@ -608,7 +627,7 @@
       letter-spacing:0.16em;
       margin-bottom:6px;
       color: var(--neon-gold);
-      text-shadow: 0 0 10px rgba(255,215,94,0.16);
+      text-shadow: 0 0 14px rgba(255,215,94,0.22);
     }
   </style>
 </head>
@@ -628,9 +647,9 @@
         </div>
       </div>
 
-      <button class="toggle-theme" id="themeToggle" type="button">
+      <button class="toggle-theme" id="themeToggle" type="button" aria-label="Toggle theme">
         <div class="toggle-pill"><div class="toggle-knob"></div></div>
-        <span class="mode-label">Dark Mode</span>
+        <span class="mode-label">Dark</span>
       </button>
     </div>
 
@@ -657,7 +676,6 @@
       </div>
 
       <div>
-        <p style="font-size:12px; margin:0 0 6px 0; font-weight:600;">Versi sopan &amp; jelas untuk kasir</p>
         <ol style="margin:0 0 8px 16px; padding:0; font-size:12px; color:var(--text-main);">
           <li>Isi <strong>Tanggal, Pejabat, Nama Kasir, AC, dan Shift</strong>.</li>
           <li>Isi <strong>ACTUAL &amp; Hutang Kemarin</strong> pada setiap KPI sesuai pencapaian shift Anda.</li>
@@ -770,24 +788,6 @@
       </div>
     </div>
 
-    <!-- SEGEER -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">KPI · <strong>SEGEER</strong></div>
-        <span class="badge-kpi">Promo / Redeem</span>
-      </div>
-
-      <div class="kpi-row ice">
-        <div class="kpi-name">SEGEER</div>
-        <div class="grid-2">
-          <div><label>Target Shift 1</label><input type="number" id="segeerTarget1" value="20" readonly /></div>
-          <div><label>Target Shift 2</label><input type="number" id="segeerTarget2" value="20" readonly /></div>
-          <div><label>Hutang Kemarin</label><input type="number" id="segeerHutangPrev" value="0" /></div>
-          <div><label>ACTUAL (shift yang jaga)</label><input type="number" id="segeerActual" placeholder="Isi Segeer shift ini" /></div>
-        </div>
-      </div>
-    </div>
-
     <!-- PROMO SUEGEER (TARGET 20%) -->
     <div class="card">
       <div class="card-header">
@@ -795,7 +795,7 @@
         <span class="badge-kpi">Redeem</span>
       </div>
 
-      <div class="kpi-row">
+      <div class="kpi-row ice">
         <div class="kpi-name">PROMO SUEGEER</div>
         <div class="grid-2">
           <div><label>Target % ke syarat</label><input type="number" id="suegeerTargetPct" value="20" readonly /></div>
@@ -813,7 +813,7 @@
         <span class="badge-kpi">Akuisisi</span>
       </div>
 
-      <div class="kpi-row ice">
+      <div class="kpi-row">
         <div class="kpi-name">NEW MEMBER</div>
         <div class="grid-2">
           <div><label>Target Shift 1</label><input type="number" id="nmTarget1" value="1" readonly /></div>
@@ -831,7 +831,7 @@
         <span class="badge-kpi">SKU Fokus</span>
       </div>
 
-      <div class="kpi-row">
+      <div class="kpi-row ice">
         <div class="kpi-name">TELUR AYAM NEGERI</div>
         <div class="grid-2">
           <div><label>Target pack / shift</label><input type="number" id="telurTargetShift" value="1" readonly /></div>
@@ -874,10 +874,8 @@
         <ul class="motivation-list">
           <li>“Kerja rapi itu mahal nilainya.”</li>
           <li>“Target bukan tekanan, tapi arah.”</li>
-          <li>“Data rapi, keputusan pasti.”</li>
           <li>“Satu shift, satu tanggung jawab.”</li>
           <li>“Konsistensi kecil menangin hasil besar.”</li>
-          <li>“Senyum Anda adalah branding toko.”</li>
           <li>“Cepat itu bagus, tepat itu wajib.”</li>
           <li>“Capek itu wajar, standar tetap jalan.”</li>
         </ul>
@@ -888,13 +886,12 @@
     <div class="footer">
       <div class="footer-main">© 2026 • SIMPANG 3 PEJAMURAN ❤️</div>
       <div class="footer-sub">Built by D&amp;D A Digital Creative Studio</div>
-      <div class="footer-tagline">Data rapi • Target tercapai</div>
     </div>
 
   </div>
 
   <script>
-    // THEME TOGGLE
+    // THEME TOGGLE (label: Dark / Light)
     (function initTheme() {
       const body = document.body;
       const toggle = document.getElementById("themeToggle");
@@ -904,11 +901,11 @@
         if (mode === "light") {
           body.classList.remove("dark");
           body.classList.add("light");
-          label.textContent = "Light Mode";
+          label.textContent = "Light";
         } else {
           body.classList.remove("light");
           body.classList.add("dark");
-          label.textContent = "Dark Mode";
+          label.textContent = "Dark";
         }
       }
 
@@ -942,10 +939,10 @@
       if (!value) return "";
       const parts = value.split("-");
       if (parts.length !== 3) return value;
-      return parts[2] + "-" + parts[1] + "-" + parts[0]; // dd-mm-yyyy
+      return parts[2] + "-" + parts[1] + "-" + parts[0];
     }
 
-    // HITUNG KPI DENGAN HUTANG KEMARIN
+    // KPI WITH DEBT
     function hitungKpiWithDebt(target1, target2, hutangPrev, actual, shift) {
       const t1 = Number(target1) || 0;
       const t2 = Number(target2) || 0;
@@ -969,18 +966,10 @@
       if (gap > 0) statusGap = "Lebih";
       else if (gap < 0) statusGap = "Kurang";
 
-      return {
-        baseTarget,
-        hutangPrev: hut,
-        totalTarget,
-        act,
-        acvRounded,
-        gap,
-        statusGap
-      };
+      return { baseTarget, hutangPrev: hut, totalTarget, act, acvRounded, gap, statusGap };
     }
 
-    // TELUR: TARGET PER SHIFT + HUTANG KEMARIN
+    // TELUR WITH DEBT
     function hitungTelurWithDebt(targetShift, hutangPrev, actual) {
       const baseTarget = Number(targetShift) || 0;
       const hut = Number(hutangPrev) || 0;
@@ -997,15 +986,7 @@
       if (gap > 0) statusGap = "Lebih";
       else if (gap < 0) statusGap = "Kurang";
 
-      return {
-        baseTarget,
-        hutangPrev: hut,
-        totalTarget,
-        act,
-        acvRounded,
-        gap,
-        statusGap
-      };
+      return { baseTarget, hutangPrev: hut, totalTarget, act, acvRounded, gap, statusGap };
     }
 
     function formatGapLine(k) {
@@ -1054,15 +1035,6 @@
         document.getElementById("sgTarget2").value,
         document.getElementById("sgHutangPrev").value,
         document.getElementById("sgActual").value,
-        shNum
-      );
-
-      // SEGEER
-      const segeer = hitungKpiWithDebt(
-        document.getElementById("segeerTarget1").value,
-        document.getElementById("segeerTarget2").value,
-        document.getElementById("segeerHutangPrev").value,
-        document.getElementById("segeerActual").value,
         shNum
       );
 
@@ -1125,14 +1097,6 @@ ACTUAL         : ${sg.act}
 ${formatGapLine(sg)}
 ACV%           : ${sg.acvRounded}%
 
-*SEGEER*
-TARGET SHIFT   : ${segeer.baseTarget}
-HUTANG KEMARIN : ${segeer.hutangPrev}
-TOTAL TARGET   : ${segeer.totalTarget}
-ACTUAL         : ${segeer.act}
-${formatGapLine(segeer)}
-ACV%           : ${segeer.acvRounded}%
-
 *PROMO SUEGEER*
 TARGET ${suegeerTargetPct}% TO SYARAT
 STRUK BERSYARAT : ${suegeerBersyarat}
@@ -1157,7 +1121,7 @@ ACV%           : ${telur.acvRounded}%`;
 
       document.getElementById("output").value = laporan;
 
-      // STATUS BAR
+      // STATUS BAR (SEGEER dihapus)
       const statusSummary = document.getElementById("statusSummary");
       const statusPieces = [];
 
@@ -1173,8 +1137,6 @@ ACV%           : ${telur.acvRounded}%`;
       statusPieces.push(pill(formatGapShort(pwp), pwp.gap >= 0));
       statusPieces.push(" · SG ");
       statusPieces.push(pill(formatGapShort(sg), sg.gap >= 0));
-      statusPieces.push(" · SEGEER ");
-      statusPieces.push(pill(formatGapShort(segeer), segeer.gap >= 0));
       statusPieces.push(" · NM ");
       statusPieces.push(pill(formatGapShort(nm), nm.gap >= 0));
       statusPieces.push(" · TELUR ");
